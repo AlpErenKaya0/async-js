@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<script>
+
+
+const serverStatus = false;
+const login = (username,password)=> {
+    return new Promise((resolve,reject) => {
+        setTimeout(()=> {
+            if(serverStatus){
+                resolve({username:username,email:"bla"})
+            }
+            else{
+                reject("server is not working.");
+            }
+        },1000);
+    })
+}
+const getPostsByUsername = (username) => {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            const posts = ["a", "b", "v"];
+            resolve(posts);
+        }, 2000); 
+    });
+};
+const getPostDetails=(post) => {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            const posts = ["post details"];
+            resolve(posts);
+        }, 1000); 
+    });
+};
+ login("ruhi cenet","ruhi123").then(user=>{
+    return getPostsByUsername(user.username);
+ })
+ .then(posts => {
+    console.log(posts);
+    return getPostDetails(posts[0]);
+ })
+ .then(details => {
+    console.log(details);
+ }).catch(err=>{
+    console.log(err);
+ })
+//     getPostsByUsername(user.username,(posts)=> {
+
+//     })
+// })
+
+
+
+
+
+</script>    
+</body>
+</html>
